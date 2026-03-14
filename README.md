@@ -19,6 +19,7 @@ Build a production-ready ML workflow for a regulated finance use case:
 - Docker
 
 ## Project Structure
+```text
 azure-credit-risk-ml/
 │
 ├── data/                # datasets
@@ -29,6 +30,7 @@ azure-credit-risk-ml/
 ├── requirements.txt
 └── README.md
 
+```
 ## Dataset
 German Credit dataset (UCI repository) used to train a credit risk classification model.
 
@@ -39,6 +41,3 @@ German Credit dataset (UCI repository) used to train a credit risk classificatio
 4. Experiment tracking
 5. Model registry in Azure ML
 6. Deployment of prediction service
-
-## Goal
-Demonstrate an end-to-end ML engineering pipeline suitable for regulated financial environments.
