@@ -1,11 +1,16 @@
 import json
 import os
 from datetime import datetime, timezone
+import uuid
 
 import joblib
 import pandas as pd
 
 model = None
+
+MODEL_NAME = "german_credit_logistic_regression"
+MODEL_VERSION = "v1"
+MODEL_STAGE = "baseline"
 
 def init():
     global model
@@ -21,7 +26,7 @@ def run(raw_data):
         elif isinstance(payload, list):
             data = payload
         else:
-            raise ValueError("Input payload must be a JSON object or a list of JSON objects.")
+            raise ValueError("Invalid input format")
 
         df = pd.DataFrame(data)
 
@@ -29,17 +34,20 @@ def run(raw_data):
         predictions = model.predict(df)
 
         results = []
-        request_ts = datetime.now(timezone.utc).isoformat()
+        timestamp = datetime.now(timezone.utc).isoformat()
 
         for i, (pred, prob) in enumerate(zip(predictions, probabilities)):
             results.append({
-                "request_id": f"req-{i:03d}",
-                "timestamp_utc": request_ts,
+                "request_id": str(uuid.uuid4()),
+                "row_index": i,
+                "timestamp_utc": timestamp,
+                "model_name": MODEL_NAME,
+                "model_version": MODEL_VERSION,
+                "model_stage": MODEL_STAGE,
                 "prediction_code": int(pred),
                 "prediction_label": "bad_credit" if int(pred) == 1 else "good_credit",
                 "probability_bad_credit": float(prob),
-                "model_name": "german_credit_logistic_regression",
-                "model_stage": "baseline"
+                "features": data[i]  # traceability
             })
 
         return {"results": results}
@@ -47,5 +55,5 @@ def run(raw_data):
     except Exception as e:
         return {
             "error": str(e),
-            "model_name": "german_credit_logistic_regression"
+            "model_name": MODEL_NAME
         }
