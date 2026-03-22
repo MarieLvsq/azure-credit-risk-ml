@@ -1,0 +1,6 @@
+{
+  "model_path": "training/model.pkl",
+  "metrics_path": "training/metrics.json",
+  "artifact_created_utc": "2026-03-22T15:49:30.920039+00:00",
+  "deployment_note": "Baseline artifact for controlled deployment and governance documentation."
+}

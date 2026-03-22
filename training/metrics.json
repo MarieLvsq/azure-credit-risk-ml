@@ -1,0 +1,43 @@
+{
+  "model_name": "german_credit_logistic_regression",
+  "business_use_case": "baseline risk classification for governance-oriented Azure ML demo",
+  "training_timestamp_utc": "2026-03-22T15:49:30.917708+00:00",
+  "dataset_rows": 1000,
+  "dataset_columns": 21,
+  "train_rows": 800,
+  "test_rows": 200,
+  "target_definition": {
+    "0": "good_credit",
+    "1": "bad_credit"
+  },
+  "test_size": 0.2,
+  "random_state": 42,
+  "accuracy": 0.785,
+  "precision_bad_credit": 0.6666666666666666,
+  "recall_bad_credit": 0.5666666666666667,
+  "roc_auc": 0.8072619047619047,
+  "numeric_features": [
+    "duration",
+    "credit_amount",
+    "installment_commitment",
+    "residence_since",
+    "age",
+    "existing_credits",
+    "num_dependents"
+  ],
+  "categorical_features": [
+    "checking_status",
+    "credit_history",
+    "purpose",
+    "savings_status",
+    "employment",
+    "personal_status_sex",
+    "other_parties",
+    "property_magnitude",
+    "other_payment_plans",
+    "housing",
+    "job",
+    "own_telephone",
+    "foreign_worker"
+  ]
+}
